@@ -18,6 +18,7 @@
 (define-key (current-global-map) (kbd "C-ö o") 'rinari-find-log)
 (define-key (current-global-map) (kbd "C-ö p") 'rinari-find-public)
 (define-key (current-global-map) (kbd "C-ö s") 'rinari-find-script)
+(define-key (current-global-map) (kbd "C-ö r") 'rinari-find-rspec)
 (define-key (current-global-map) (kbd "C-ö t") 'rinari-find-test)
 (define-key (current-global-map) (kbd "C-ö v") 'rinari-find-view)
 (define-key (current-global-map) (kbd "C-ö w") 'rinari-find-worker)
