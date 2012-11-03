@@ -1,5 +1,12 @@
 ;; Window switching. (C-x o goes to the next window)
 (windmove-default-keybindings) ;; Shift+direction
+
+;; Some terminals o not suport modified arrow keys.
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
 (global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
 (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
 (define-key (current-global-map) (kbd "C-M-ß") 'indent-region)
