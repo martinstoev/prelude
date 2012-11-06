@@ -31,3 +31,5 @@
 (define-key (current-global-map) (kbd "C-ö w") 'rinari-find-worker)
 (define-key (current-global-map) (kbd "C-ö x") 'rinari-find-fixture)
 (define-key (current-global-map) (kbd "C-ö y") 'rinari-find-stylesheet)
+
+(define-key (current-global-map) (kbd "M-ö") 'yas/expand)
