@@ -12,3 +12,8 @@
 (load-theme 'tango-dark)
 
 (global-linum-mode 1)
+
+(require 'rdefs)
+;; (add-hook 'ruby-mode-hook
+;;           (lambda ()
+;;             (define-key ruby-mode-map (kbd "M-e") 'ruby-rdefs)))
