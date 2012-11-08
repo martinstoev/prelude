@@ -1,6 +1,6 @@
 ;;; lorem-ipsum.el --- Insert dummy pseudo Latin text.
 ;; Author & Maintainer: Jean-Philippe Theberge (jphil21@sourceforge.net)
-;; Special Thanks: The emacswiki users, the #emacs@freenode.net citizens 
+;; Special Thanks: The emacswiki users, the #emacs@freenode.net citizens
 ;;                 and Marcus Tullius Cicero
 ;;
 ;; version :
@@ -105,46 +105,46 @@
 (make-variable-buffer-local 'Lorem-ipsum-list-end)
 
 (add-hook 'sgml-mode-hook (lambda ()
-			    (setq Lorem-ipsum-paragraph-separator "<br><br>\n"
-				  Lorem-ipsum-sentence-separator "&nbsp;&nbsp;"
-				  Lorem-ipsum-list-beginning "<ul>\n"
-				  Lorem-ipsum-list-bullet "<li>"
-				  Lorem-ipsum-list-item-end "</li>\n"
-				  Lorem-ipsum-list-end "</ul>\n")))
+                            (setq Lorem-ipsum-paragraph-separator "<br><br>\n"
+                                  Lorem-ipsum-sentence-separator "&nbsp;&nbsp;"
+                                  Lorem-ipsum-list-beginning "<ul>\n"
+                                  Lorem-ipsum-list-bullet "<li>"
+                                  Lorem-ipsum-list-item-end "</li>\n"
+                                  Lorem-ipsum-list-end "</ul>\n")))
 
 (defun Lorem-ipsum-insert-paragraphs (&optional num)
   (interactive "p")
   (if (not num)(setq num 1))
   (if (> num 0)
       (progn
-	(insert (concat 
-		 (mapconcat 'identity 
-			    (nth (if (interactive-p) 0 (random (length Lorem-ipsum-text)))
-				 Lorem-ipsum-text) " ")
-		 Lorem-ipsum-paragraph-separator))
-	(Lorem-ipsum-insert-paragraphs (- num 1)))))
+        (insert (concat
+                 (mapconcat 'identity
+                            (nth (if (interactive-p) 0 (random (length Lorem-ipsum-text)))
+                                 Lorem-ipsum-text) " ")
+                 Lorem-ipsum-paragraph-separator))
+        (Lorem-ipsum-insert-paragraphs (- num 1)))))
 
 (defun Lorem-ipsum-insert-sentences (&optional num)
   (interactive "p")
   (if (not num)(setq num 1))
   (if (> num 0)
       (progn
-	(let ((para 
-	       (nth (if (interactive-p) 0 (random (length Lorem-ipsum-text))) Lorem-ipsum-text)))
-	  (insert (concat (nth (if (interactive-p) 0 (random (length para))) para) Lorem-ipsum-sentence-separator)))
-	(Lorem-ipsum-insert-sentences (- num 1)))))
-	  
+        (let ((para
+               (nth (if (interactive-p) 0 (random (length Lorem-ipsum-text))) Lorem-ipsum-text)))
+          (insert (concat (nth (if (interactive-p) 0 (random (length para))) para) Lorem-ipsum-sentence-separator)))
+        (Lorem-ipsum-insert-sentences (- num 1)))))
+
 (defun Lorem-ipsum-insert-list (&optional num)
   (interactive "p")
   (if (not num)(setq num 1))
   (if (> num 0)
       (progn
-	(if (interactive-p) (insert Lorem-ipsum-list-beginning))
-	(let ((para (nth (if (interactive-p) 0 (random (length Lorem-ipsum-text))) Lorem-ipsum-text)))
-	  (insert (concat Lorem-ipsum-list-bullet 
-			  (nth (if (interactive-p) 0 (random (length para))) para) 
-			  Lorem-ipsum-list-item-end)))
-	(Lorem-ipsum-insert-list (- num 1)))
+        (if (interactive-p) (insert Lorem-ipsum-list-beginning))
+        (let ((para (nth (if (interactive-p) 0 (random (length Lorem-ipsum-text))) Lorem-ipsum-text)))
+          (insert (concat Lorem-ipsum-list-bullet
+                          (nth (if (interactive-p) 0 (random (length para))) para)
+                          Lorem-ipsum-list-item-end)))
+        (Lorem-ipsum-insert-list (- num 1)))
     (insert Lorem-ipsum-list-end)))
 
 
