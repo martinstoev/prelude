@@ -8,10 +8,13 @@
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
 (global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
-(global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
+(global-set-key
+ (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
 (define-key (current-global-map) (kbd "C-M-ß") 'indent-region)
 (define-key (current-global-map) (kbd "<f5>") 'smart-compile)
 (define-key (current-global-map) (kbd "<f9>") 'mars/nautilus)
+(define-key (current-global-map)
+  (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
 
 (define-key (current-global-map) (kbd "C-ö c") 'rinari-find-controller)
 (define-key (current-global-map) (kbd "C-ö e") 'rinari-find-environment)
@@ -37,5 +40,6 @@
 ;; Assigning C-c , l to evaluate only the current spec in a spec file.
 ;; Normally you can use C-c , v for the whole file and C-c , a for every
 ;; file.
-;; (define-key rspec-mode-keymap (kbd "l") 'rspec-verify-single)
-;; (define-key rspec-mode-verifible-keymap (kbd "l") 'rspec-verify-single)
+(require 'rspec-mode)
+(define-key rspec-mode-keymap (kbd "l") 'rspec-verify-single)
+(define-key rspec-mode-verifible-keymap (kbd "l") 'rspec-verify-single)
