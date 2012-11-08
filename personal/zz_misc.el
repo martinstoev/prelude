@@ -18,9 +18,9 @@
 (global-linum-mode 1)
 
 (require 'rdefs)
-;; (add-hook 'ruby-mode-hook
-;;           (lambda ()
-;;             (define-key ruby-mode-map (kbd "M-e") 'ruby-rdefs)))
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (define-key ruby-mode-map (kbd "M-e") 'ruby-rdefs)))
 
 ;; Make sure Monaco is installed properly and then use it as default font
 (if (file-exists-p "~/.fonts/Monaco_Linux.ttf")
