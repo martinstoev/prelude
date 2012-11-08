@@ -36,6 +36,8 @@
 (define-key (current-global-map) (kbd "C-ö y") 'rinari-find-stylesheet)
 
 (define-key (current-global-map) (kbd "M-ö") 'yas/expand)
+(define-key (current-global-map) (kbd "C-i") 'iy-go-to-char)
+(define-key (current-global-map) (kbd "M-i") 'iy-go-to-char-backward)
 
 ;; Assigning C-c , l to evaluate only the current spec in a spec file.
 ;; Normally you can use C-c , v for the whole file and C-c , a for every
