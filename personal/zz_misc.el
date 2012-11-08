@@ -28,3 +28,5 @@
 
 (require 'auto-complete)
 (global-auto-complete-mode 1)
+
+(key-chord-mode 1)

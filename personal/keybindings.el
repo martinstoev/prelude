@@ -39,6 +39,11 @@
 (define-key (current-global-map) (kbd "C-i") 'iy-go-to-char)
 (define-key (current-global-map) (kbd "M-i") 'iy-go-to-char-backward)
 
+;; Move to char similar to "f" in vim, f+g forward, d+f backward
+(require 'key-chord)
+(key-chord-define-global "df" 'iy-go-to-char)
+(key-chord-define-global "sd" 'iy-go-to-char-backward)
+
 ;; Assigning C-c , l to evaluate only the current spec in a spec file.
 ;; Normally you can use C-c , v for the whole file and C-c , a for every
 ;; file.
