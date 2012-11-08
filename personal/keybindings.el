@@ -33,3 +33,9 @@
 (define-key (current-global-map) (kbd "C-ö y") 'rinari-find-stylesheet)
 
 (define-key (current-global-map) (kbd "M-ö") 'yas/expand)
+
+;; Assigning C-c , l to evaluate only the current spec in a spec file.
+;; Normally you can use C-c , v for the whole file and C-c , a for every
+;; file.
+;; (define-key rspec-mode-keymap (kbd "l") 'rspec-verify-single)
+;; (define-key rspec-mode-verifible-keymap (kbd "l") 'rspec-verify-single)
