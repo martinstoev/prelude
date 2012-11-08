@@ -25,3 +25,6 @@
 ;; Make sure Monaco is installed properly and then use it as default font
 (if (file-exists-p "~/.fonts/Monaco_Linux.ttf")
     (set-default-font "Monaco-14"))
+
+(require 'auto-complete)
+(global-auto-complete-mode 1)
