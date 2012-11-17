@@ -36,13 +36,13 @@
 (define-key (current-global-map) (kbd "C-ö y") 'rinari-find-stylesheet)
 
 (define-key (current-global-map) (kbd "M-ö") 'yas/expand)
-(define-key (current-global-map) (kbd "C-i") 'iy-go-to-char)
-(define-key (current-global-map) (kbd "M-i") 'iy-go-to-char-backward)
+(define-key (current-global-map) (kbd "C-<") 'er/expand-region)
 
 ;; Move to char similar to "f" in vim, f+g forward, d+f backward
 (require 'key-chord)
 (key-chord-define-global "df" 'iy-go-to-char)
 (key-chord-define-global "sd" 'iy-go-to-char-backward)
+(key-chord-define-global "lk" 'ffap)
 
 ;; Assigning C-c , l to evaluate only the current spec in a spec file.
 ;; Normally you can use C-c , v for the whole file and C-c , a for every
