@@ -7,6 +7,14 @@
                       (cons (concat (getenv "HOME") "/.rbenv/bin")
                             exec-path)))
 
+;; ;; Beginning of the el4r block:
+;; ;; RCtool generated this block automatically. DO NOT MODIFY this block!
+;; (add-to-list 'load-path "/home/mars/.rbenv/versions/1.9.3-p286/share/emacs/site-lisp")
+;; (require 'el4r)
+;; (el4r-boot)
+;; ;; End of the el4r block.
+;; ;; User-setting area is below this line.
+
 ;; Setting default font-size
 (when window-system
   (set-face-attribute 'default nil :height 160))
@@ -24,7 +32,7 @@
 
 ;; Make sure Monaco is installed properly and then use it as default font
 (if (file-exists-p "~/.fonts/Monaco_Linux.ttf")
-    (set-default-font "Monaco-14"))
+    (set-default-font "Monaco-13"))
 
 (require 'auto-complete)
 (global-auto-complete-mode 1)
