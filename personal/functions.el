@@ -20,6 +20,12 @@
   (shell-command
    (concat "nautilus " (convert-standard-filename buffer-file-name))))
 
+(defun mars/finder ()
+  "Launch Finder in the current directory and selects current file"
+  (interactive)
+  (shell-command
+   (concat "open -R " (convert-standard-filename buffer-file-name))))
+
 ;; Origin http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
