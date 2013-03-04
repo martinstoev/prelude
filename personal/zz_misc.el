@@ -40,3 +40,12 @@
 (global-auto-complete-mode 1)
 
 (key-chord-mode 1)
+
+;; Setup peepopen. The application has to be installed first.
+(require 'textmate)
+(require 'peepopen)
+(textmate-mode)
+
+;; For Emacs on Mac OS X http;//emacsformacosx.com/
+;; Opens files in the exiting frame instead of making new ones.
+(setq ns-pop-up-frames nil)

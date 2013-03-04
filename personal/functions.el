@@ -35,3 +35,11 @@
         (setq beg (region-beginning) end (region-end))
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
+
+(defun open-xing (project) (interactive (list (read-directory-name "Peepopen for project: " "~/code/xing/profile")))
+  (flet ((textmate-project-root () (file-truename project)))
+    (peepopen-goto-file-gui)))
+
+(defun open-playground (project) (interactive (list (read-directory-name "Peepopen for project: " "~/code/playground/")))
+  (flet ((textmate-project-root () (file-truename project)))
+    (peepopen-goto-file-gui)))
