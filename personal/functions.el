@@ -43,3 +43,40 @@
 (defun open-playground (project) (interactive (list (read-directory-name "Peepopen for project: " "~/code/playground/")))
   (flet ((textmate-project-root () (file-truename project)))
     (peepopen-goto-file-gui)))
+
+(defun xing-sync () (interactive (shell-command "xing sandbox sync")))
+
+(defun mars-convert-json-to-hash (startPos endPos)
+  "Convert a json object to a ruby hash..
+This command calls the external script 'convert_json_to_rb_hash.rb'."
+  (interactive "r")
+  (let (scriptName)
+    (setq scriptName "/Users/martin.stoev/bin/convert_json_to_rb_hash.rb") ; full path to your script
+    (shell-command-on-region startPos endPos scriptName nil t nil t))
+  (indent-region startPos endPos))
+
+(defun mars-convert-hash-to-json (startPos endPos)
+  "Convert a json object to a ruby hash..
+This command calls the external script 'convert_rb_hash_to_json.rb'."
+  (interactive "r")
+  (let (scriptName)
+    (setq scriptName "/Users/martin.stoev/bin/convert_rb_hash_to_json.rb") ; full path to your script
+    (shell-command-on-region startPos endPos scriptName nil t nil t))
+  (indent-region startPos endPos))
+
+(defun mars-convert-hash-to-params (startPos endPos)
+  "Convert a ruby hash to the params format for rails.
+This command calls the external script 'convert_rb_hash_to_http_params.rb'."
+  (interactive "r")
+  (let (scriptName)
+    (setq scriptName "/Users/martin.stoev/bin/convert_rb_hash_to_http_params.rb") ; full path to your script
+    (shell-command-on-region startPos endPos scriptName nil t nil t))
+  (indent-region startPos endPos))
+
+(defun mars-xing-profile-tags ()
+  "Creates a new TAGS table for the profile"
+  (interactive)
+  (let (scriptname)
+    (setq scriptname "/Users/martin.stoev/bin/tag-rails.sh&")
+    (shell-command scriptname))
+  (visit-tags-table "/User/martin.stoev/code/xing/profile"))

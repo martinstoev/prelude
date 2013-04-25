@@ -1,11 +1,10 @@
 ;; Source: http://marc-bowes.com/2012/03/10/rbenv-with-emacs.html
 ;; Setting rbenv path
+
 (setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:"
-                       (getenv "HOME") "/.rbenv/bin:"
                        (getenv "PATH")))
 (setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims")
-                      (cons (concat (getenv "HOME") "/.rbenv/bin")
-                            exec-path)))
+                      exec-path))
 
 ;; ;; Beginning of the el4r block:
 ;; ;; RCtool generated this block automatically. DO NOT MODIFY this block!
@@ -49,3 +48,7 @@
 ;; For Emacs on Mac OS X http;//emacsformacosx.com/
 ;; Opens files in the exiting frame instead of making new ones.
 (setq ns-pop-up-frames nil)
+
+(guru-global-mode -1)
+
+(add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))

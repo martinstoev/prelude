@@ -13,6 +13,7 @@
 (define-key (current-global-map) (kbd "C-M-\\") 'indent-region)
 (define-key (current-global-map) (kbd "<f5>") 'smart-compile)
 (define-key (current-global-map) (kbd "<f9>") 'mars/finder)
+(define-key (current-global-map) (kbd "<f10>")  'xing-sync)
 (define-key (current-global-map)
   (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
 
@@ -37,6 +38,7 @@
 
 (define-key (current-global-map) (kbd "M-£") 'yas/expand)
 (define-key (current-global-map) (kbd "C-<") 'er/expand-region)
+(define-key (current-global-map) (kbd "C->") 'er/contract-region)
 
 ;; Move to char similar to "f" in vim, f+g forward, d+f backward
 (require 'key-chord)
@@ -50,3 +52,24 @@
 (require 'rspec-mode)
 (define-key rspec-mode-keymap (kbd "l") 'rspec-verify-single)
 (define-key rspec-mode-verifible-keymap (kbd "l") 'rspec-verify-single)
+
+;; Move more quickly
+(global-set-key (kbd "C-S-n")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (next-line 7))))
+
+(global-set-key (kbd "C-S-p")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (previous-line 7))))
+
+(global-set-key (kbd "C-S-f")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (forward-char 7))))
+
+(global-set-key (kbd "C-S-b")
+                (lambda ()
+                  (interactive)
+                  (ignore-errors (backward-char 7))))
