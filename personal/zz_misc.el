@@ -52,3 +52,5 @@
 (guru-global-mode -1)
 
 (add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
+
+;; find-file-in-project

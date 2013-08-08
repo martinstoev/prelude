@@ -11,7 +11,7 @@
 (global-set-key
  (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
 (define-key (current-global-map) (kbd "C-M-\\") 'indent-region)
-(define-key (current-global-map) (kbd "<f5>") 'smart-compile)
+(define-key (current-global-map) (kbd "<f7>") 'compile)
 (define-key (current-global-map) (kbd "<f9>") 'mars/finder)
 (define-key (current-global-map) (kbd "<f10>")  'xing-sync)
 (define-key (current-global-map)
@@ -39,6 +39,10 @@
 (define-key (current-global-map) (kbd "M-£") 'yas/expand)
 (define-key (current-global-map) (kbd "C-<") 'er/expand-region)
 (define-key (current-global-map) (kbd "C->") 'er/contract-region)
+
+(define-key (current-global-map) (kbd "C-x f") 'find-file-in-project)
+(define-key (current-global-map) (kbd "<f5>") 'mars-grep-project)
+(define-key (current-global-map) (kbd "<f6>") 'mars-grep-in-current-directory)
 
 ;; Move to char similar to "f" in vim, f+g forward, d+f backward
 (require 'key-chord)

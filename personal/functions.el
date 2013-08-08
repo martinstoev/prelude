@@ -80,3 +80,56 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
     (setq scriptname "/Users/martin.stoev/bin/tag-rails.sh&")
     (shell-command scriptname))
   (visit-tags-table "/User/martin.stoev/code/xing/profile"))
+
+
+(defvar mars-grep-project-history nil)
+
+;; For some reason I cannot quote the directory
+;; This might break if there are spaces in the directory
+(defun mars-grep-in-directory (directory search-for)
+  "Search for a specific string in a directory"
+  (grep-find
+   (concat
+    "cd " directory "; "
+    "find . "
+    "\\( -path '*/.svn' -or "
+    "-path '*/tmp' -or "
+    "-path '*/.git' -or "
+    "-path '*/config/locales' -or "
+    "-path '*/javascripts/locales' -or "
+    "-path '*/vendor' \\) "
+    "-prune -or -type f -print0 | "
+    "xargs -0 grep -nr --ignore-case --fixed-strings "
+    "--exclude='*.log' "
+    "--exclude='*.css' "
+    "--exclude='*TAGS'"
+    " '" search-for "'")))
+
+(defun mars-grep-project (search-for)
+  "Searches for a specific string in the whole project"
+  (interactive
+   (list
+    (read-from-minibuffer "Search for: "
+                          (car mars-grep-project-history)
+                          nil
+                          nil
+                          'mars-grep-project-history)))
+  (let (project-directory)
+    (setq project-directory
+          (expand-file-name(if (ffip-project-root)
+                               (ffip-project-root)
+                             default-directory)))
+    (mars-grep-in-directory project-directory search-for)))
+
+(defun mars-grep-in-current-directory (search-for)
+  "Searches for a specific string in the current directory"
+  (interactive
+   (list
+    (read-from-minibuffer "Search for: "
+                          (car mars-grep-project-history)
+                          nil
+                          nil
+                          'mars-grep-project-history)))
+  (let (project-directory)
+    (setq project-directory (expand-file-name default-directory))
+    (mars-grep-in-directory project-directory search-for)))
