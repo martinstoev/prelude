@@ -94,6 +94,7 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
     "find . "
     "\\( -path '*/.svn' -or "
     "-path '*/tmp' -or "
+    "-path '*/coverage' -or "
     "-path '*/.git' -or "
     "-path '*/config/locales' -or "
     "-path '*/javascripts/locales' -or "
@@ -101,7 +102,6 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
     "-prune -or -type f -print0 | "
     "xargs -0 grep -nr --ignore-case --fixed-strings "
     "--exclude='*.log' "
-    "--exclude='*.css' "
     "--exclude='*TAGS'"
     " '" search-for "'")))
 
@@ -124,6 +124,7 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
 (defun mars-grep-in-current-directory (search-for)
   "Searches for a specific string in the current directory"
   (interactive
+   find-file-in-project
    (list
     (read-from-minibuffer "Search for: "
                           (car mars-grep-project-history)
@@ -133,3 +134,8 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
   (let (project-directory)
     (setq project-directory (expand-file-name default-directory))
     (mars-grep-in-directory project-directory search-for)))
+
+(defun notes ()
+  "Jump to notes"
+  (interactive)
+  (find-file "~/notes.org"))
