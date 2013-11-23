@@ -18,3 +18,8 @@ savefile/
 ac-comphist.dat
 session.*
 tramp
+/prelude-modules.el
+projectile-bookmarks.eld
+session*
+.cask
+
