@@ -1,3 +1,7 @@
+;; Dirty hack to keep helm from working. Remove if solved
+(setq load-path (cons "/Users/martin.stoev/.emacs.d/elpa/cl-lib-0.3" load-path))
+(require 'cl-lib)
+
 ;;; init.el --- Prelude's configuration entry point.
 ;;
 ;; Copyright (c) 2011 Bozhidar Batsov

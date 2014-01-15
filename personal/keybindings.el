@@ -44,6 +44,9 @@
 (define-key (current-global-map) (kbd "<f5>") 'mars-grep-project)
 (define-key (current-global-map) (kbd "<f6>") 'mars-grep-in-current-directory)
 
+;; HELM
+(define-key (current-global-map) (kbd "C-c j") 'helm-imenu)
+
 ;; Move to char similar to "f" in vim, f+g forward, d+f backward
 (require 'key-chord)
 (key-chord-define-global "df" 'iy-go-to-char)
@@ -54,8 +57,8 @@
 ;; Normally you can use C-c , v for the whole file and C-c , a for every
 ;; file.
 (require 'rspec-mode)
-(define-key rspec-mode-keymap (kbd "l") 'rspec-verify-single)
-(define-key rspec-mode-verifible-keymap (kbd "l") 'rspec-verify-single)
+;; (define-key rspec-mode-keymap (kbd "l") 'rspec-verify-single)
+;; (define-key rspec-mode-verifible-keymap (kbd "l") 'rspec-verify-single)
 
 ;; Move more quickly
 (global-set-key (kbd "C-S-n")
@@ -77,3 +80,9 @@
                 (lambda ()
                   (interactive)
                   (ignore-errors (backward-char 7))))
+
+;; Multiple cursors
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)

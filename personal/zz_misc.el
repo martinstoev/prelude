@@ -53,4 +53,21 @@
 
 (add-to-list 'auto-mode-alist (cons (rx ".js" eos) 'js2-mode))
 
-;; find-file-in-project
+;; indend with tab width of 2 spaces
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq-default js2-basic-offset 2)
+
+(add-hook 'js2-mode-hook '(lambda () (progn
+                                       (set-variable 'indent-tabs-mode nil))))
+
+
+;; Change highlight of current line to be light gray
+(set-face-background 'hl-line "#3e4446")
+(set-face-foreground 'highlight nil)
+
+;; HELM
+(helm-mode 1)
+
+;; We want to see whitespaces
+(global-whitespace-mode t)

@@ -114,6 +114,7 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
                           nil
                           nil
                           'mars-grep-project-history)))
+  (ffip-project-files)
   (let (project-directory)
     (setq project-directory
           (expand-file-name(if (ffip-project-root)
