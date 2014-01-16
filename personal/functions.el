@@ -105,6 +105,8 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
     "--exclude='*TAGS'"
     " '" search-for "'")))
 
+(require 'vc)
+
 (defun mars-grep-project (search-for)
   "Searches for a specific string in the whole project"
   (interactive
@@ -114,18 +116,17 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
                           nil
                           nil
                           'mars-grep-project-history)))
-  (ffip-project-files)
   (let (project-directory)
     (setq project-directory
-          (expand-file-name(if (ffip-project-root)
-                               (ffip-project-root)
-                             default-directory)))
+          (expand-file-name
+           (vc-call-backend (vc-responsible-backend default-directory)
+                            'root
+                            default-directory)))
     (mars-grep-in-directory project-directory search-for)))
 
 (defun mars-grep-in-current-directory (search-for)
   "Searches for a specific string in the current directory"
   (interactive
-   find-file-in-project
    (list
     (read-from-minibuffer "Search for: "
                           (car mars-grep-project-history)
