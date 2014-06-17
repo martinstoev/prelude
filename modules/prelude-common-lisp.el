@@ -35,7 +35,10 @@
 (require 'prelude-lisp)
 
 ;; the SBCL configuration file is in Common Lisp
-(add-to-list 'auto-mode-alist '("\\.sbclrc$" . lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.sbclrc\\'" . lisp-mode))
+
+;; Open files with .cl extension in lisp-mode
+(add-to-list 'auto-mode-alist '("\\.cl\\'" . lisp-mode))
 
 ;; Common Lisp support depends on SLIME being installed with Quicklisp
 (if (file-exists-p (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -65,7 +68,7 @@
 
 (defun prelude-start-slime ()
   "Start SLIME unless it's already running."
-  (unless (slime-connected-p)
+  (unless (and (fboundp 'slime-connected-p) (slime-connected-p))
     (save-excursion (slime))))
 
 ;; start slime automatically when we open a lisp file
