@@ -12,7 +12,11 @@
   (beginning-of-buffer)
   (replace-string "“" "\"")
   (beginning-of-buffer)
-  (replace-string "”" "\""))
+  (replace-string "”" "\"")
+  (beginning-of-buffer)
+  (replace-string "‘" "\'")
+  (beginning-of-buffer)
+  (replace-string "’" "\'"))
 
 (defun mars/nautilus ()
   "Launch nautilus in the current directory and selects current file"
@@ -28,7 +32,8 @@
 
 ;; Origin http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
 (defun comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line if there's no active region."
+  "Comments or uncomments the region or the current line if
+there's no active region."
   (interactive)
   (let (beg end)
     (if (region-active-p)
@@ -36,15 +41,19 @@
       (setq beg (line-beginning-position) end (line-end-position)))
     (comment-or-uncomment-region beg end)))
 
-(defun open-xing (project) (interactive (list (read-directory-name "Peepopen for project: " "~/code/xing/profile")))
+(defun open-xing (project)
+  (interactive
+   (list (read-directory-name "Peepopen for project: " "~/code/xing/profile")))
   (flet ((textmate-project-root () (file-truename project)))
     (peepopen-goto-file-gui)))
 
-(defun open-playground (project) (interactive (list (read-directory-name "Peepopen for project: " "~/code/playground/")))
+(defun open-playground (project)
+  (interactive
+   (list (read-directory-name "Peepopen for project: " "~/code/playground/")))
   (flet ((textmate-project-root () (file-truename project)))
     (peepopen-goto-file-gui)))
 
-(defun xing-sync () (interactive (shell-command "xing sandbox sync")))
+(defun xing-sync () (interactive (shell-command "xing sandbox sync -f")))
 
 (defun mars-convert-json-to-hash (startPos endPos)
   "Convert a json object to a ruby hash..
@@ -141,3 +150,41 @@ This command calls the external script 'convert_rb_hash_to_http_params.rb'."
   "Jump to notes"
   (interactive)
   (find-file "~/notes.org"))
+
+(defun mars-eshell-repeat-last-command ()
+  "Removes the current input from the eshell, executes the last
+command and switches back to the current buffer."
+  (interactive)
+  (let (current-buffer-name)
+    (setq current-buffer-name (buffer-name))
+    (switch-to-buffer "*eshell*")
+    (end-of-buffer)
+    (eshell-kill-input)
+    (eshell-previous-matching-input-from-input 0)
+    (let (current-eshell-command)
+      (setq current-eshell-command (buffer-substring (progn
+                                                       (eshell-bol)
+                                                       (point))
+                                                     (progn
+                                                       (end-of-line)
+                                                       (point))))
+      (eshell-send-input)
+      (switch-to-buffer current-buffer-name)
+      (message (concat "*eshell* $ " current-eshell-command)))))
+
+(defun find-file-at-point-with-line()
+  "if file has an attached line num goto that line, ie boom.rb:12"
+  (interactive)
+  (setq line-num 0)
+  (save-excursion
+    (search-forward-regexp "[^ ]:" (point-max) t)
+    (if (looking-at "[0-9]+")
+        (setq line-num (string-to-number (buffer-substring (match-beginning 0) (match-end 0))))))
+  ;(find-file-at-point)
+  (find-file (ffap-guesser))
+  (if (not (equal line-num 0))
+      (goto-line line-num)))
+
+(defun fapl()
+  (interactive)
+  (find-file-at-point-with-line))

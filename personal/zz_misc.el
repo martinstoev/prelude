@@ -71,3 +71,8 @@
 
 ;; We want to see whitespaces
 (global-whitespace-mode t)
+
+(global-rinari-mode t)
+
+;; Disable compilation at save
+(setq-default scss-compile-at-save nil)

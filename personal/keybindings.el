@@ -43,6 +43,7 @@
 (define-key (current-global-map) (kbd "C-x f") 'find-file-in-project)
 (define-key (current-global-map) (kbd "<f5>") 'mars-grep-project)
 (define-key (current-global-map) (kbd "<f6>") 'mars-grep-in-current-directory)
+(define-key (current-global-map) (kbd "<f8>") 'mars-eshell-repeat-last-command)
 
 ;; HELM
 (define-key (current-global-map) (kbd "C-c j") 'helm-imenu)
